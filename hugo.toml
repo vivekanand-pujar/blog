@@ -1,0 +1,55 @@
+baseURL = "https://vivekanand.dev/"
+languageCode = "en-us"
+title = "Vivekanand Pujar"
+theme = "PaperMod"
+
+enableRobotsTXT = true
+
+[pagination]
+pagerSize = 10
+
+[params]
+author = "Vivekanand Pujar"
+description = "Technical deep dives, architecture notes, white papers, and essays."
+ShowReadingTime = true
+ShowCodeCopyButtons = true
+ShowPostNavLinks = true
+mainSections = ["papers", "deep-dives", "essays"]
+env = "production"
+ShowToc = true
+TocOpen = false
+ShowBreadCrumbs = true
+ShowShareButtons = true
+images = ["images/og-default.png"]
+
+[params.homeInfoParams]
+Title = "Vivekanand Pujar - Platform Engineering"
+Content = "Distributed systems, Kubernetes, cloud infrastructure, observability, and software architecture."
+
+[[params.socialIcons]]
+name = "rss"
+url = "index.xml"
+
+[[menu.main]]
+identifier = "papers"
+name = "White Papers"
+url = "/papers/"
+weight = 10
+
+[[menu.main]]
+identifier = "deep-dives"
+name = "Deep Dives"
+url = "/deep-dives/"
+weight = 20
+
+[[menu.main]]
+identifier = "about"
+name = "About"
+url = "/about/"
+weight = 30
+
+[[menu.main]]
+identifier = "essays"
+name = "Essays"
+url = "/essays/"
+weight = 25
