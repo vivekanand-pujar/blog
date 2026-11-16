@@ -9,7 +9,7 @@
   --font-text: 'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif;
   --font-mono: 'Fira Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
   --tracking-ui: 0.04em; --tracking-title: 0.06em; --tracking-label: 0.12em; --tracking-text: 0.01em;
-  --text-size: 16px; --line-height: 1.7; --measure: 42rem; --gutter: 24px;
+  --text-size: 16px; --line-height: 1.7; --measure: 37.5rem; --gutter: 24px;
   --radius-s: 4px; --radius-m: 8px; --radius-l: 12px;
 }
 :root, [data-theme="white"] {
@@ -182,8 +182,8 @@ html[data-pref="white"] .i-white, html[data-pref="night"] .i-night, html[data-pr
 .chroma .ln, .chroma .lnt { color: var(--faint); margin-right: .8em; user-select: none }
 
 /* ---------- large screens: a wider column (and slightly larger text) ---------- */
-@media (min-width: 1280px) { :root { --measure: 48rem } }
-@media (min-width: 1680px) { :root { --measure: 54rem } .intro-title { font-size: 38px } .post-title { font-size: 42px } }
+/* Column: 37.5rem (600px) ≈ 75 characters per line of 16px Inter (comfortable reading); larger titles on big screens */
+@media (min-width: 1680px) { .intro-title { font-size: 38px } .post-title { font-size: 42px } }
 
 /* ---------- small screens ---------- */
 @media (max-width: 640px) {
