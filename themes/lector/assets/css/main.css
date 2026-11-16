@@ -236,3 +236,10 @@ html[data-pref="white"] .i-white, html[data-pref="night"] .i-night, html[data-pr
   .site-header, .site-footer, .comments, .post-nav, .theme-toggle, .code-label, .anchor, .read-progress, .search { display: none !important }
   body { background: #fff; color: #111 }
 }
+
+/* About page: credential line and links */
+.prose .credential { margin-top: 2.4em; padding-top: 1.2em; border-top: 1px solid var(--border); font-family: var(--font-ui); font-size: 15px; letter-spacing: var(--tracking-ui) }
+.prose .credential .label { display: block; margin: 0 0 6px }
+.prose .elsewhere { font-family: var(--font-ui); font-size: 15px; letter-spacing: var(--tracking-ui); color: var(--muted) }
+.prose .elsewhere .sep { margin: 0 .6em }
+.prose img.portrait { display: block; width: 120px; height: 120px; border-radius: 50%; object-fit: cover; margin: 0 0 1.8em; box-shadow: 0 0 0 1px var(--border) }
