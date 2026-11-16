@@ -60,7 +60,7 @@ main.wrap { flex: 1; padding-top: 48px; padding-bottom: 72px }
 .header-inner { max-width: 1080px; margin: 0 auto; padding: 0 var(--gutter); display: flex; align-items: center; gap: 12px; min-height: 60px }
 .site-title { display: inline-flex; flex-direction: column; justify-content: center; gap: 2px; white-space: nowrap; line-height: 1.25 }
 .site-name { font-size: 16px; letter-spacing: var(--tracking-title) }
-.site-line { font-size: 12px; letter-spacing: var(--tracking-ui); color: var(--muted) }
+.site-line { font-size: 10px; letter-spacing: var(--tracking-label); text-transform: uppercase; color: var(--muted) }
 .site-nav { display: flex; align-items: center; gap: 2px; margin-left: auto }
 .site-nav a { position: relative; padding: 6px 10px; border-radius: var(--radius-m); color: var(--muted); font-size: 14px }
 .site-nav a:hover { color: var(--text); background: var(--hover) }
