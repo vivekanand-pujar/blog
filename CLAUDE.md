@@ -4,7 +4,7 @@ Vivek's public tech blog: Hugo, own theme `themes/lector` (same style guide as h
 **Public site** (unlike Lector/Adversaria, no Cloudflare Access).
 
 - Repo `vivekanand-pujar/blog` (public; formerly `vivekanand-pujar.github.io`), checkout `~/blog`. Old local copy `~/Documents/vivekanandpv-github-io` is obsolete.
-- Hugo **0.168.0** extended (local Homebrew; Cloudflare Pages env `HUGO_VERSION=0.168.0`). Build: `hugo --gc --minify`, output `public/`.
+- Hugo **0.168.0** extended (local Homebrew; Cloudflare Pages env `HUGO_VERSION=0.168.0`). Build (Cloudflare): `hugo --gc --minify && npx -y pagefind@1.3.0 --site public` (Pagefind = header search; indexes only `data-pagefind-body` = posts), output `public/`. CSP needs `wasm-unsafe-eval` for Pagefind.
 - Domains: **vivekanand.dev** is canonical (Pages custom domain); `www.vivekanand.dev`, `vivekanand.io`, `www.vivekanand.io` → 301 to the same path on vivekanand.dev (Cloudflare Redirect Rules). The zones also hold Proton Mail records and the Lector/Adversaria subdomains — keep mail records DNS only.
 - Sections (`params.mainSections`): `papers` (White Papers), `deep-dives`, `essays`. `about.md`, `archive.md` (layout `archive`), `tags/_index.md`.
 - New post: `hugo new content deep-dives/my-post.md` → edit → `draft = false` → push. Front matter: `description`, `tags`, `toc = true` for a contents box, `comments = false` to hide comments, `images = ["/images/x.png"]` for a share image.
