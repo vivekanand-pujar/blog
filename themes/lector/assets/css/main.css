@@ -58,9 +58,9 @@ main.wrap { flex: 1; padding-top: 48px; padding-bottom: 72px }
   transition: transform .25s ease }
 .site-header.is-hidden { transform: translateY(-100%) }          /* hides while scrolling down, returns on scroll up */
 .header-inner { max-width: 1080px; margin: 0 auto; padding: 0 var(--gutter); display: flex; align-items: center; gap: 12px; min-height: 60px }
-.site-title { display: inline-flex; align-items: center; gap: 10px; font-size: 16px; letter-spacing: var(--tracking-title); white-space: nowrap }
-.monogram { width: 26px; height: 26px; mix-blend-mode: multiply }   /* black VP on white: the white blends away */
-[data-theme="night"] .monogram { filter: invert(1); mix-blend-mode: screen; opacity: .86 }
+.site-title { display: inline-flex; flex-direction: column; justify-content: center; gap: 2px; white-space: nowrap; line-height: 1.25 }
+.site-name { font-size: 16px; letter-spacing: var(--tracking-title) }
+.site-line { font-size: 10.5px; letter-spacing: var(--tracking-label); text-transform: uppercase; color: var(--muted) }
 .site-nav { display: flex; align-items: center; gap: 2px; margin-left: auto }
 .site-nav a { position: relative; padding: 6px 10px; border-radius: var(--radius-m); color: var(--muted); font-size: 14px }
 .site-nav a:hover { color: var(--text); background: var(--hover) }
@@ -221,6 +221,7 @@ html[data-pref="white"] .i-white, html[data-pref="night"] .i-night, html[data-pr
   main.wrap { padding-top: 32px }
   .header-inner { flex-wrap: wrap; padding-top: 8px; padding-bottom: 6px; row-gap: 2px; column-gap: 6px }
   .site-title { order: 1; flex: 1 } .header-actions { order: 2; border-left: 0; padding-left: 0 }
+  .site-line { display: none }
   .header-actions a.icon-btn { display: none }                       /* phones: only search + theme in the header */
   .site-nav { order: 3; width: 100%; margin-left: -8px; gap: 0 } .site-nav a { padding: 6px 8px }
   .site-nav a.is-current::after { bottom: -7px }

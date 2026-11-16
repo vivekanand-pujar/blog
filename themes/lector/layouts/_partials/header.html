@@ -2,7 +2,7 @@
 {{- $isPost := and .IsPage (in site.Params.mainSections .Section) }}
 <header class="site-header" id="siteHeader">
   <div class="header-inner">
-    <a class="site-title" href="/" aria-label="{{ site.Title }} — home"><img class="monogram" src="/logo.png" alt="" width="26" height="26">{{ site.Title }}</a>
+    <a class="site-title" href="/" aria-label="{{ site.Title }} — home"><span class="site-name">{{ site.Title }}</span>{{ with site.Params.brandline }}<span class="site-line">{{ . }}</span>{{ end }}</a>
     <nav class="site-nav" aria-label="Main">
       {{- range site.Menus.main }}
       <a href="{{ .URL }}"{{ if or ($cur.IsMenuCurrent "main" .) (eq (strings.TrimSuffix "/" $cur.RelPermalink) (strings.TrimSuffix "/" .URL)) (and $cur.IsPage (eq (printf "/%s/" $cur.Section) .URL)) }} class="is-current" aria-current="page"{{ end }}>{{ .Name }}</a>
