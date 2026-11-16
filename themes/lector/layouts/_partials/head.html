@@ -37,8 +37,9 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 {{- $hum := and .IsPage (in site.Params.wings.humanities .Section) }}
 {{- $fams := "family=Inter:ital,wght@0,400;0,600;1,400;1,600&family=Fira+Mono:wght@400;700" }}
-{{- if $hum }}{{ $fams = printf "%s&family=Literata:ital,opsz,wght@0,7..72,400;0,7..72,600;1,7..72,400" $fams }}{{ end }}
+{{- if $hum }}{{ $fams = printf "%s&family=Spectral:ital,wght@0,400;0,600;1,400;1,600" $fams }}{{ end }}
 {{- if and $hum (.HasShortcode "verse") }}{{ $fams = printf "%s&family=Tiro+Devanagari+Sanskrit:ital@0;1" $fams }}{{ end }}
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?{{ $fams | safeURL }}&display=swap">
+{{- if $hum }}<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Literata:ital@0;1&text=%E1%B9%9D%E1%B9%9C&display=swap">{{ end }}{{/* ṝ Ṝ: the only IAST letters Spectral lacks */}}
 {{- $css := resources.Get "css/main.css" | minify | fingerprint }}
 <link rel="stylesheet" href="{{ $css.RelPermalink }}" integrity="{{ $css.Data.Integrity }}">

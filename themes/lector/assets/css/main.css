@@ -245,8 +245,8 @@ html[data-pref="white"] .i-white, html[data-pref="night"] .i-night, html[data-pr
 .prose .elsewhere .sep { margin: 0 .6em }
 .prose img.portrait { display: block; width: 120px; height: 120px; border-radius: 50%; object-fit: cover; margin: 0 0 1.8em; box-shadow: 0 0 0 1px var(--border) }
 
-/* ---------- Humanities wing (Marginalia, Translations): Literata for the reading text ---------- */
-:root { --font-serif: 'Literata', Georgia, 'Times New Roman', serif; --font-deva: 'Tiro Devanagari Sanskrit', 'Noto Serif Devanagari', serif }
+/* ---------- Humanities wing (Marginalia, Translations): Spectral for the reading text (Literata only as fallback for ṝ) ---------- */
+:root { --font-serif: 'Spectral', 'Literata', Georgia, 'Times New Roman', serif; --font-deva: 'Tiro Devanagari Sanskrit', 'Noto Serif Devanagari', serif }
 .wing-humanities { --text-size: 19px; --tracking-text: 0em; --line-height: 1.68; --measure: calc(36.5 * var(--text-size)) }   /* Literata 19px: ~75 chars per line (measured) */
 .wing-humanities .post-title { font-family: var(--font-serif); font-weight: 400; letter-spacing: 0 }
 .wing-humanities .prose { font-family: var(--font-serif) }
