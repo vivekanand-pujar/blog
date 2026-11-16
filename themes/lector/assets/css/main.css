@@ -247,12 +247,12 @@ html[data-pref="white"] .i-white, html[data-pref="night"] .i-night, html[data-pr
 
 /* ---------- Humanities wing (Marginalia, Translations): Spectral for the reading text (Literata only as fallback for ṝ) ---------- */
 :root { --font-serif: 'Spectral', 'Literata', Georgia, 'Times New Roman', serif; --font-deva: 'Tiro Devanagari Sanskrit', 'Noto Serif Devanagari', serif }
-.wing-humanities { --text-size: 19px; --tracking-text: 0em; --line-height: 1.68; --measure: calc(36.5 * var(--text-size)) }   /* Literata 19px: ~75 chars per line (measured) */
+.wing-humanities { --text-size: 20px; --tracking-text: 0em; --line-height: 1.65; --measure: calc(34 * var(--text-size)) }   /* Spectral 20px: ~75 chars per line (measured) */
 .wing-humanities .post-title { font-family: var(--font-serif); font-weight: 400; letter-spacing: 0 }
 .wing-humanities .prose { font-family: var(--font-serif) }
 .wing-humanities .prose :is(h2, h3, h4) { font-family: var(--font-serif); font-weight: 600; letter-spacing: 0 }
 .wing-humanities .prose blockquote { font-style: italic }
-@media (max-width: 640px) { .wing-humanities { --text-size: 17px } }
+@media (max-width: 640px) { .wing-humanities { --text-size: 18px } }
 .wing-list { margin-top: 56px }
 
 /* header: hairline between the technical and humanities groups */
