@@ -8,8 +8,8 @@
   --font-ui: 'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif;
   --font-text: 'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif;
   --font-mono: 'Fira Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
-  --tracking-ui: 0.04em; --tracking-title: 0.06em; --tracking-label: 0.12em; --tracking-text: 0.01em;
-  --text-size: 18px; --line-height: 1.7; --measure: calc(37.5 * var(--text-size));   /* ≈ 75 characters per line of Inter at any size */ --gutter: 24px;
+  --tracking-ui: 0.04em; --tracking-title: 0.06em; --tracking-label: 0.12em; --tracking-text: 0.02rem;
+  --text-size: 20px; --line-height: 1.7; --measure: calc(37.5 * var(--text-size) + 75 * var(--tracking-text));   /* ≈ 75 characters per line of Inter (glyphs ≈ 0.5em + letter-spacing) */ --gutter: 24px;
   --radius-s: 4px; --radius-m: 8px; --radius-l: 12px;
 }
 :root, [data-theme="white"] {
@@ -182,9 +182,8 @@ html[data-pref="white"] .i-white, html[data-pref="night"] .i-night, html[data-pr
 .chroma .ln, .chroma .lnt { color: var(--faint); margin-right: .8em; user-select: none }
 
 /* ---------- large screens: a wider column (and slightly larger text) ---------- */
-/* Larger screens: larger text, and the column grows with it (still ~75 characters per line) */
-@media (min-width: 1280px) { :root { --text-size: 20.5px } }
-@media (min-width: 1680px) { :root { --text-size: 23px } .intro-title { font-size: 40px } .post-title { font-size: 46px } }
+/* Larger titles on big screens (article text stays 20px; column ≈ 774px) */
+@media (min-width: 1680px) { .intro-title { font-size: 38px } .post-title { font-size: 42px } }
 
 /* ---------- small screens ---------- */
 @media (max-width: 640px) {
