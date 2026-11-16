@@ -7,7 +7,7 @@
 :root {
   --font-ui: 'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif;
   --font-text: 'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif;
-  --font-mono: 'Fira Code', ui-monospace, SFMono-Regular, Menlo, monospace;
+  --font-mono: 'Fira Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
   --tracking-ui: 0.04em; --tracking-title: 0.06em; --tracking-label: 0.12em; --tracking-text: 0.01em;
   --text-size: 18px; --line-height: 1.7; --measure: 42rem; --gutter: 24px;
   --radius-s: 4px; --radius-m: 8px; --radius-l: 12px;

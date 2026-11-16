@@ -1,6 +1,6 @@
 /* Giscus theme "White" — vivekanand.dev (Lector/Adversaria palette). Base: giscus light, colours overridden. */
 @import url("https://giscus.app/themes/light.css");
-@import url("https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,400;0,600;1,400&family=Fira+Code&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,400;0,600;1,400&family=Fira+Mono:wght@400;700&display=swap");
 main {
   --color-canvas-default: #ffffff; --color-canvas-overlay: #ffffff; --color-canvas-inset: #fafafa; --color-canvas-subtle: #f7f7f8;
   --color-fg-default: #141414; --color-fg-muted: #6b6b70; --color-fg-subtle: #a0a0a6;
@@ -22,6 +22,6 @@ main {
   font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif; letter-spacing: .02em;
 }
 main .gsc-comment .markdown, main .gsc-comment-box-textarea { letter-spacing: .01em }
-main code, main pre, main kbd { font-family: 'Fira Code', ui-monospace, Menlo, monospace; letter-spacing: 0 }
+main code, main pre, main kbd { font-family: 'Fira Mono', ui-monospace, Menlo, monospace; letter-spacing: 0 }
 main .gsc-comment-box-write, main .gsc-comment-box-textarea { background: #ffffff }
 main .btn-primary, main .gsc-reactions-button { box-shadow: none }
