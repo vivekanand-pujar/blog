@@ -12,3 +12,7 @@
 /js/*
   ! Cache-Control
   Cache-Control: public, max-age=31536000, immutable
+/giscus/*
+  ! Cache-Control
+  Cache-Control: public, max-age=3600
+  Access-Control-Allow-Origin: https://giscus.app

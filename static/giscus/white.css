@@ -1,0 +1,27 @@
+/* Giscus theme "White" — vivekanand.dev (Lector/Adversaria palette). Base: giscus light, colours overridden. */
+@import url("https://giscus.app/themes/light.css");
+@import url("https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,400;0,600;1,400&family=Fira+Code&display=swap");
+main {
+  --color-canvas-default: #ffffff; --color-canvas-overlay: #ffffff; --color-canvas-inset: #fafafa; --color-canvas-subtle: #f7f7f8;
+  --color-fg-default: #141414; --color-fg-muted: #6b6b70; --color-fg-subtle: #a0a0a6;
+  --color-border-default: #e6e6e8; --color-border-muted: #efeff1; --color-neutral-muted: rgba(0,0,0,.05);
+  --color-accent-fg: #a4501f; --color-accent-emphasis: #a4501f; --color-accent-muted: rgba(164,80,31,.4); --color-accent-subtle: rgba(164,80,31,.08);
+  --color-success-fg: #1f9d4c; --color-attention-fg: #c99700; --color-danger-fg: #b42318;
+  --color-btn-text: #141414; --color-btn-bg: #f7f7f8; --color-btn-border: #e6e6e8; --color-btn-shadow: none; --color-btn-inset-shadow: none;
+  --color-btn-hover-bg: #efeff1; --color-btn-hover-border: #d9d9dc; --color-btn-active-bg: #e6e6e8; --color-btn-active-border: #d9d9dc; --color-btn-selected-bg: #efeff1;
+  --color-btn-primary-text: #ffffff; --color-btn-primary-bg: #a4501f; --color-btn-primary-border: #a4501f; --color-btn-primary-shadow: none; --color-btn-primary-inset-shadow: none;
+  --color-btn-primary-hover-bg: #8c4319; --color-btn-primary-hover-border: #8c4319; --color-btn-primary-selected-bg: #8c4319; --color-btn-primary-selected-shadow: none;
+  --color-btn-primary-disabled-text: rgba(255,255,255,.85); --color-btn-primary-disabled-bg: rgba(164,80,31,.45); --color-btn-primary-disabled-border: transparent;
+  --color-action-list-item-default-hover-bg: rgba(0,0,0,.05);
+  --color-segmented-control-bg: #f7f7f8; --color-segmented-control-button-bg: #ffffff; --color-segmented-control-button-selected-border: #e6e6e8;
+  --color-social-reaction-bg-hover: #efeff1; --color-social-reaction-bg-reacted-hover: rgba(164,80,31,.16);
+  --color-scale-blue-1: rgba(164,80,31,.22); --color-scale-gray-1: #e6e6e8; --color-primer-shadow-inset: none;
+  --color-prettylights-syntax-comment: #a0a0a6; --color-prettylights-syntax-keyword: #d53984; --color-prettylights-syntax-string: #1f9d4c;
+  --color-prettylights-syntax-constant: #7852ee; --color-prettylights-syntax-entity: #0a9eb8; --color-prettylights-syntax-storage-modifier-import: #2e3338;
+  --color-prettylights-syntax-entity-tag: #e93147; --color-prettylights-syntax-variable: #0a9eb8;
+  font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif; letter-spacing: .02em;
+}
+main .gsc-comment .markdown, main .gsc-comment-box-textarea { letter-spacing: .01em }
+main code, main pre, main kbd { font-family: 'Fira Code', ui-monospace, Menlo, monospace; letter-spacing: 0 }
+main .gsc-comment-box-write, main .gsc-comment-box-textarea { background: #ffffff }
+main .btn-primary, main .gsc-reactions-button { box-shadow: none }

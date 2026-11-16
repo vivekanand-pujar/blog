@@ -6,11 +6,13 @@
   var dark = window.matchMedia ? window.matchMedia('(prefers-color-scheme: dark)') : { matches: false, addEventListener: function () {} };
   function pref() { try { var v = localStorage.getItem(KEY); return v === 'night' || v === 'auto' ? v : 'white' } catch (e) { return 'white' } }
   function resolved(p) { return p === 'auto' ? (dark.matches ? 'night' : 'white') : p }
+  // Giscus theme files in the site's own colours (static/giscus/white.css, night.css), served from this origin
+  function giscusTheme(t) { return location.origin + '/giscus/' + t + '.css' }
   function apply(p) {
     var t = resolved(p);
     root.dataset.pref = p; root.dataset.theme = t;
     var g = document.querySelector('iframe.giscus-frame');
-    if (g) g.contentWindow.postMessage({ giscus: { setConfig: { theme: t === 'night' ? 'dark' : 'light' } } }, 'https://giscus.app');
+    if (g) g.contentWindow.postMessage({ giscus: { setConfig: { theme: giscusTheme(t) } } }, 'https://giscus.app');
   }
   apply(pref());
   dark.addEventListener('change', function () { if (pref() === 'auto') apply('auto') });
@@ -61,7 +63,7 @@
       s.src = 'https://giscus.app/client.js'; s.async = true; s.crossOrigin = 'anonymous';
       var attrs = { repo: d.repo, 'repo-id': d.repoId, category: d.category, 'category-id': d.categoryId, mapping: d.mapping,
         strict: '1', 'reactions-enabled': '1', 'emit-metadata': '0', 'input-position': 'bottom', lang: 'en', loading: 'lazy',
-        theme: root.dataset.theme === 'night' ? 'dark' : 'light' };
+        theme: giscusTheme(root.dataset.theme) };
       for (var k in attrs) s.setAttribute('data-' + k, attrs[k]);
       g.appendChild(s);
     }
