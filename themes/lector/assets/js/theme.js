@@ -56,6 +56,64 @@
       host.appendChild(btn);
     });
 
+    // sticky header: hide while scrolling down, show on scroll up; reading progress on posts
+    var header = document.getElementById('siteHeader'), bar = document.getElementById('readProgress'), prose = document.querySelector('.prose');
+    var lastY = window.scrollY, ticking = false;
+    function onScroll() {
+      var y = window.scrollY;
+      if (header) header.classList.toggle('is-hidden', y > lastY && y > 120 && !document.getElementById('searchDialog').open);
+      lastY = y;
+      if (bar && prose) {
+        var r = prose.getBoundingClientRect(), total = r.height - window.innerHeight * 0.6;
+        var done = Math.min(1, Math.max(0, (window.innerHeight * 0.4 - r.top) / (total > 0 ? total : 1)));
+        bar.style.transform = 'scaleX(' + done.toFixed(4) + ')';
+      }
+      ticking = false;
+    }
+    window.addEventListener('scroll', function () { if (!ticking) { ticking = true; requestAnimationFrame(onScroll) } }, { passive: true });
+    onScroll();
+
+    // search (Pagefind, built at deploy): button, ⌘K / Ctrl+K or "/" opens; ↑↓ move; ↵ opens; Esc closes
+    var dlg = document.getElementById('searchDialog'), input = document.getElementById('searchInput'), list = document.getElementById('searchResults'), hint = document.getElementById('searchHint');
+    var pf = null, sel = -1, seq = 0;
+    function loadPagefind() {
+      if (!pf) pf = import('/pagefind/pagefind.js').then(function (m) { return m.options ? m.options({ excerptLength: 22 }).then(function () { return m }) : m })
+        .catch(function () { hint.textContent = 'Search becomes available once the site is built with its search index.'; return null });
+      return pf;
+    }
+    function openSearch() { if (!dlg || dlg.open) return; dlg.showModal(); input.select(); loadPagefind() }
+    function mark(i) { var items = list.children; sel = Math.max(-1, Math.min(items.length - 1, i));
+      for (var k = 0; k < items.length; k++) items[k].setAttribute('aria-selected', k === sel ? 'true' : 'false');
+      if (items[sel]) items[sel].scrollIntoView({ block: 'nearest' }) }
+    function esc(t) { var d = document.createElement('div'); d.textContent = t || ''; return d.innerHTML }
+    async function run(q) {
+      var my = ++seq, m = await loadPagefind(); if (!m || my !== seq) return;
+      if (!q.trim()) { list.innerHTML = ''; hint.style.display = ''; return }
+      var res = await m.debouncedSearch(q, {}, 120); if (!res || my !== seq) return;
+      var data = await Promise.all(res.results.slice(0, 12).map(function (r) { return r.data() })); if (my !== seq) return;
+      hint.style.display = data.length ? 'none' : ''; if (!data.length) hint.textContent = 'No posts match “' + q + '”.';
+      list.innerHTML = data.map(function (d) {
+        var meta = [d.meta.section, d.meta.date].filter(Boolean).map(esc).join(' · ');
+        return '<li role="option"><a href="' + esc(d.url) + '"><div class="r-meta">' + meta + '</div><div class="r-title">' + esc(d.meta.title) + '</div><div class="r-excerpt">' + d.excerpt + '</div></a></li>';
+      }).join('');   // excerpt: Pagefind's own text from our posts, with <mark> around matches
+      mark(data.length ? 0 : -1);
+    }
+    if (dlg) {
+      document.getElementById('searchOpen').addEventListener('click', openSearch);
+      document.addEventListener('keydown', function (e) {
+        var typing = /^(INPUT|TEXTAREA|SELECT)$/.test(document.activeElement.tagName) || document.activeElement.isContentEditable;
+        if ((e.key === 'k' || e.key === 'K') && (e.metaKey || e.ctrlKey)) { e.preventDefault(); dlg.open ? dlg.close() : openSearch() }
+        else if (e.key === '/' && !typing && !dlg.open) { e.preventDefault(); openSearch() }
+      });
+      input.addEventListener('input', function () { run(input.value) });
+      input.addEventListener('keydown', function (e) {
+        if (e.key === 'ArrowDown') { e.preventDefault(); mark(sel + 1) }
+        else if (e.key === 'ArrowUp') { e.preventDefault(); mark(sel - 1) }
+        else if (e.key === 'Enter') { var a = list.children[sel] && list.children[sel].querySelector('a'); if (a) { e.preventDefault(); location.href = a.href } }
+      });
+      dlg.addEventListener('click', function (e) { if (e.target === dlg) dlg.close() });   // click on the backdrop
+    }
+
     // comments (Giscus): config comes from data-* on #giscus
     var g = document.getElementById('giscus');
     if (g) {

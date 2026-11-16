@@ -21,6 +21,11 @@ images = ["images/og-default.png"]   # default share image (Open Graph / Twitter
 toc = false                           # per post: toc = true
 comments = true                       # per post: comments = false
 
+# Header icons (LinkedIn shows once a URL is set)
+[params.social]
+github = "https://github.com/vivekanand-pujar"
+linkedin = ""
+
 # Giscus (GitHub Discussions). Comments render only once repoId and categoryId are set.
 [params.giscus]
 repo = "vivekanand-pujar/blog"

@@ -1,10 +1,11 @@
 {{ define "main" }}
-<article class="post">
+{{- $isPost := in site.Params.mainSections .Section }}
+<article class="post"{{ if $isPost }} data-pagefind-body{{ end }}>
   <header class="post-head">
     {{- if .IsPage }}{{ with .CurrentSection }}{{ if and (not .IsHome) (in site.Params.mainSections .Section) }}<p class="label"><a href="{{ .RelPermalink }}">{{ .Title }}</a></p>{{ end }}{{ end }}{{ end }}
-    <h1 class="post-title">{{ .Title }}</h1>
+    <h1 class="post-title" data-pagefind-meta="title">{{ .Title }}</h1>
     {{- if in site.Params.mainSections .Section }}
-    <div class="post-meta">
+    <div class="post-meta" data-pagefind-ignore>
       <time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "2 January 2006" }}</time>
       {{- if gt (.Lastmod.Sub .Date).Hours 24.0 }}<span class="sep">·</span><span>Updated {{ .Lastmod.Format "2 January 2006" }}</span>{{ end }}
       <span class="sep">·</span><span>{{ .ReadingTime }} min read</span>
@@ -13,14 +14,15 @@
   </header>
   {{- $toc := site.Params.toc }}{{ if isset .Params "toc" }}{{ $toc = .Params.toc }}{{ end }}
   {{- if and $toc (gt (len .TableOfContents) 32) }}
-  <details class="toc" open><summary class="label">Contents</summary>{{ .TableOfContents }}</details>
+  <details class="toc" open data-pagefind-ignore><summary class="label">Contents</summary>{{ .TableOfContents }}</details>
   {{- end }}
+  {{- if $isPost }}<span hidden data-pagefind-meta="section">{{ .CurrentSection.Title }}</span><span hidden data-pagefind-meta="date">{{ .Date.Format "2 Jan 2006" }}</span>{{ end }}
   <div class="prose">{{ .Content }}</div>
   {{- with .GetTerms "tags" }}
-  <ul class="post-tags">{{ range . }}<li><a href="{{ .RelPermalink }}">#{{ .LinkTitle }}</a></li>{{ end }}</ul>
+  <ul class="post-tags" data-pagefind-ignore>{{ range . }}<li><a href="{{ .RelPermalink }}">#{{ .LinkTitle }}</a></li>{{ end }}</ul>
   {{- end }}
   {{- if in site.Params.mainSections .Section }}
-  <nav class="post-nav" aria-label="More posts">
+  <nav class="post-nav" aria-label="More posts" data-pagefind-ignore>
     {{- with .NextInSection }}<a class="prev" href="{{ .RelPermalink }}"><span class="label">← Older</span><span>{{ .Title }}</span></a>{{ else }}<span></span>{{ end }}
     {{- with .PrevInSection }}<a class="next" href="{{ .RelPermalink }}"><span class="label">Newer →</span><span>{{ .Title }}</span></a>{{ end }}
   </nav>
