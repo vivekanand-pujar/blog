@@ -21,7 +21,7 @@ images = ["images/og-default.png"]   # default share image (Open Graph / Twitter
 toc = false                           # per post: toc = true
 comments = true                       # per post: comments = false
 
-brandline = "Platform · Cloud · Architecture"   # small line under the name in the header (hidden on phones)
+brandline = "Architecture · Platform · Infrastructure"   # small line under the name in the header (hidden on phones)
 
 # Header icons (LinkedIn shows once a URL is set)
 [params.social]
