@@ -1,0 +1,30 @@
+{{ define "main" }}
+<article class="post">
+  <header class="post-head">
+    {{- if .IsPage }}{{ with .CurrentSection }}{{ if and (not .IsHome) (in site.Params.mainSections .Section) }}<p class="label"><a href="{{ .RelPermalink }}">{{ .Title }}</a></p>{{ end }}{{ end }}{{ end }}
+    <h1 class="post-title">{{ .Title }}</h1>
+    {{- if in site.Params.mainSections .Section }}
+    <div class="post-meta">
+      <time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "2 January 2006" }}</time>
+      {{- if gt (.Lastmod.Sub .Date).Hours 24.0 }}<span class="sep">·</span><span>Updated {{ .Lastmod.Format "2 January 2006" }}</span>{{ end }}
+      <span class="sep">·</span><span>{{ .ReadingTime }} min read</span>
+    </div>
+    {{- end }}
+  </header>
+  {{- $toc := site.Params.toc }}{{ if isset .Params "toc" }}{{ $toc = .Params.toc }}{{ end }}
+  {{- if and $toc (gt (len .TableOfContents) 32) }}
+  <details class="toc" open><summary class="label">Contents</summary>{{ .TableOfContents }}</details>
+  {{- end }}
+  <div class="prose">{{ .Content }}</div>
+  {{- with .GetTerms "tags" }}
+  <ul class="post-tags">{{ range . }}<li><a href="{{ .RelPermalink }}">#{{ .LinkTitle }}</a></li>{{ end }}</ul>
+  {{- end }}
+  {{- if in site.Params.mainSections .Section }}
+  <nav class="post-nav" aria-label="More posts">
+    {{- with .NextInSection }}<a class="prev" href="{{ .RelPermalink }}"><span class="label">← Older</span><span>{{ .Title }}</span></a>{{ else }}<span></span>{{ end }}
+    {{- with .PrevInSection }}<a class="next" href="{{ .RelPermalink }}"><span class="label">Newer →</span><span>{{ .Title }}</span></a>{{ end }}
+  </nav>
+  {{ partial "comments.html" . }}
+  {{- end }}
+</article>
+{{ end }}

@@ -1,4 +1,7 @@
 public/
 resources/_gen/
 .hugo_build.lock
+.hugo-build-lock
 .DS_Store
+.ds-store
+node_modules/

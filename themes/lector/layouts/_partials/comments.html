@@ -1,0 +1,8 @@
+{{- $g := site.Params.giscus }}
+{{- $on := site.Params.comments }}{{ if isset .Params "comments" }}{{ $on = .Params.comments }}{{ end }}
+{{- if and $g.repoId $g.categoryId $on }}
+<section class="comments" aria-label="Comments">
+  <h2 class="label">Comments</h2>
+  <div id="giscus" data-repo="{{ $g.repo }}" data-repo-id="{{ $g.repoId }}" data-category="{{ $g.category }}" data-category-id="{{ $g.categoryId }}" data-mapping="{{ $g.mapping | default "pathname" }}"></div>
+</section>
+{{- end }}

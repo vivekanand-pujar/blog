@@ -1,0 +1,11 @@
+{{ define "main" }}
+<header class="page-head">
+  <h1 class="page-title">{{ .Title }}</h1>
+  {{- with .Content }}<div class="page-desc">{{ . }}</div>{{ end }}
+</header>
+<section class="post-list">
+  {{- $p := .Paginate .RegularPages }}
+  {{- range $p.Pages }}{{ partial "post-item.html" . }}{{ else }}<p class="empty">Nothing here yet.</p>{{ end }}
+  {{ partial "pager.html" . }}
+</section>
+{{ end }}

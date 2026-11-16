@@ -1,61 +1,71 @@
 baseURL = "https://vivekanand.dev/"
-languageCode = "en-us"
+locale = "en-US"
 title = "Vivekanand Pujar"
-theme = "PaperMod"
-
+theme = "lector"
 enableRobotsTXT = true
+titleCaseStyle = "none"     # keep titles and tag names exactly as written
+enableGitInfo = true          # "Updated" dates come from the last commit that touched a post
 
 [pagination]
-pagerSize = 10
+pagerSize = 12
+
+[taxonomies]
+tag = "tags"
 
 [params]
 author = "Vivekanand Pujar"
 description = "Technical deep dives, architecture notes, white papers, and essays."
-ShowReadingTime = true
-ShowCodeCopyButtons = true
-ShowPostNavLinks = true
+tagline = "Distributed systems, Kubernetes, cloud infrastructure, observability, and software architecture."
 mainSections = ["papers", "deep-dives", "essays"]
-env = "production"
-ShowToc = true
-TocOpen = false
-ShowBreadCrumbs = true
-ShowShareButtons = true
-images = ["images/og-default.png"]
-favicon = "/favicon.ico"
-favicon16x16 = "/favicon-16x16.png"
-favicon32x32 = "/favicon-32x32.png"
-apple_touch_icon = "/apple-touch-icon.png"
-hideFooter = false
-copyright = "© 2026 Vivekanand Pujar"
+images = ["images/og-default.png"]   # default share image (Open Graph / Twitter)
+toc = false                           # per post: toc = true
+comments = true                       # per post: comments = false
 
-[params.homeInfoParams]
-Title = "Vivekanand Pujar - Platform Engineering"
-Content = "Distributed systems, Kubernetes, cloud infrastructure, observability, and software architecture."
-
-[[params.socialIcons]]
-name = "rss"
-url = "index.xml"
+# Giscus (GitHub Discussions). Comments render only once repoId and categoryId are set.
+[params.giscus]
+repo = "vivekanand-pujar/blog"
+repoId = ""
+category = "Comments"
+categoryId = ""
+mapping = "pathname"
 
 [[menu.main]]
-identifier = "papers"
 name = "White Papers"
 url = "/papers/"
 weight = 10
 
 [[menu.main]]
-identifier = "deep-dives"
 name = "Deep Dives"
 url = "/deep-dives/"
 weight = 20
 
 [[menu.main]]
-identifier = "about"
-name = "About"
-url = "/about/"
+name = "Essays"
+url = "/essays/"
 weight = 30
 
 [[menu.main]]
-identifier = "essays"
-name = "Essays"
-url = "/essays/"
-weight = 25
+name = "About"
+url = "/about/"
+weight = 40
+
+[markup.goldmark.renderer]
+unsafe = true                         # own writing only: allows <kbd>, <details>, <sup> … (CSP still blocks scripts)
+
+[markup.goldmark.parser.attribute]
+block = true
+
+[markup.highlight]
+noClasses = false                     # colours come from the theme's CSS (Obsidian/Adversaria palette)
+lineNos = false
+
+[markup.tableOfContents]
+startLevel = 2
+endLevel = 3
+
+[outputs]
+home = ["HTML", "RSS"]
+section = ["HTML", "RSS"]
+
+[services.rss]
+limit = 30

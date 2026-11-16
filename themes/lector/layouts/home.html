@@ -1,0 +1,15 @@
+{{ define "main" }}
+<section class="intro">
+  <h1 class="intro-title">{{ site.Title }}</h1>
+  {{- with site.Params.tagline }}<p class="intro-text">{{ . }}</p>{{ end }}
+  {{- with .Content }}<div class="prose">{{ . }}</div>{{ end }}
+</section>
+{{- $posts := where site.RegularPages "Section" "in" site.Params.mainSections }}
+<section class="post-list" aria-label="Recent posts">
+  <h2 class="label">Recent</h2>
+  {{- $p := .Paginate $posts }}
+  {{- range $p.Pages }}{{ partial "post-item.html" . }}{{ else }}<p class="empty">No posts yet — the first one is on its way.</p>{{ end }}
+  {{ partial "pager.html" . }}
+  {{- if $posts }}<p class="more"><a href="/archive/">All posts →</a></p>{{ end }}
+</section>
+{{ end }}

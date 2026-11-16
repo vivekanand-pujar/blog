@@ -1,0 +1,14 @@
+{{ define "main" }}
+<header class="page-head"><h1 class="page-title">{{ .Title }}</h1></header>
+{{- $posts := where site.RegularPages "Section" "in" site.Params.mainSections }}
+{{- range $posts.GroupByDate "2006" }}
+<section class="archive-year">
+  <h2 class="label">{{ .Key }}</h2>
+  <ul class="archive-list">
+    {{- range .Pages }}
+    <li><time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "2 Jan" }}</time><a href="{{ .RelPermalink }}">{{ .Title }}</a><span class="archive-section">{{ .CurrentSection.Title }}</span></li>
+    {{- end }}
+  </ul>
+</section>
+{{- else }}<p class="empty">No posts yet.</p>{{ end }}
+{{ end }}
