@@ -165,6 +165,10 @@ html[data-pref="white"] .i-white, html[data-pref="night"] .i-night, html[data-pr
 .chroma .hl { display: block; background: var(--hover) }
 .chroma .ln, .chroma .lnt { color: var(--faint); margin-right: .8em; user-select: none }
 
+/* ---------- large screens: a wider column (and slightly larger text) ---------- */
+@media (min-width: 1280px) { :root { --measure: 48rem; --text-size: 19px } }
+@media (min-width: 1680px) { :root { --measure: 54rem } .intro-title { font-size: 38px } .post-title { font-size: 42px } }
+
 /* ---------- small screens ---------- */
 @media (max-width: 640px) {
   :root { --text-size: 17px; --gutter: 18px }
