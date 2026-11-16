@@ -19,7 +19,7 @@
   {{- if $isPost }}<span hidden data-pagefind-meta="section">{{ .CurrentSection.Title }}</span><span hidden data-pagefind-meta="date">{{ .Date.Format "2 Jan 2006" }}</span>{{ end }}
   <div class="prose">{{ .Content }}</div>
   {{- with .GetTerms "tags" }}
-  <ul class="post-tags" data-pagefind-ignore>{{ range . }}<li><a href="{{ .RelPermalink }}">#{{ .LinkTitle }}</a></li>{{ end }}</ul>
+  <ul class="post-tags">{{ range . }}<li><a href="{{ .RelPermalink }}">#{{ .LinkTitle }}</a></li>{{ end }}</ul>
   {{- end }}
   {{- if in site.Params.mainSections .Section }}
   <nav class="post-nav" aria-label="More posts" data-pagefind-ignore>
