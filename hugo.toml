@@ -24,9 +24,9 @@ comments = true                       # per post: comments = false
 # Giscus (GitHub Discussions). Comments render only once repoId and categoryId are set.
 [params.giscus]
 repo = "vivekanand-pujar/blog"
-repoId = ""
+repoId = "R_kgDOT_o1sg"
 category = "Comments"
-categoryId = ""
+categoryId = "DIC_kwDOT_o1ss4DLQLN"
 mapping = "pathname"
 
 [[menu.main]]
