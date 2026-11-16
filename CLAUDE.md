@@ -11,7 +11,7 @@ Vivek's public tech blog: Hugo, own theme `themes/lector` (same style guide as h
 
 ## Theme (themes/lector)
 - Layouts use Hugo's 0.146+ structure: `baseof/home/section/term/taxonomy/single/archive/404.html`, `_partials/`, `_markup/` (heading anchors, external links → new tab, lazy images with sizes).
-- `assets/css/main.css`: tokens = Lector/Adversaria (White/Night, accent #a4501f/#e0915e); interface Inter **400 only**, 0.04em tracking (titles 0.06em, uppercase labels 0.12em); article text Inter 16px/1.7, column 37.5rem (600px) ≈ 75 chars per line, headings & bold 600; code Fira Mono with Adversaria's code colours mapped to Chroma classes (`markup.highlight.noClasses = false`).
+- `assets/css/main.css`: tokens = Lector/Adversaria (White/Night, accent #a4501f/#e0915e); interface Inter **400 only**, 0.04em tracking (titles 0.06em, uppercase labels 0.12em); article text Inter 18px / 20.5px (≥1280) / 23px (≥1680) / 17px phones, line height 1.7; column = 37.5 × text size (≈ 75 chars per line: 672 / 768 / 862px), headings & bold 600; code Fira Mono with Adversaria's code colours mapped to Chroma classes (`markup.highlight.noClasses = false`).
 - `assets/js/theme.js` (loaded blocking in `<head>`, no inline JS): White/Night/Auto toggle (localStorage `vp:theme`), code-block language label = copy button, Giscus loader that follows the theme.
 - `titleCaseStyle = "none"` (titles/tags exactly as written). `markup.goldmark.renderer.unsafe = true` (own writing; allows <kbd> etc.; CSP blocks scripts).
 - `static/_headers`: CSP (self + giscus.app), cache: fingerprinted css/js immutable, HTML revalidated.
