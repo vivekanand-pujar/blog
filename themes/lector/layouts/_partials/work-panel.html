@@ -1,0 +1,11 @@
+{{- /* Reference panel at the top of a book review ([book]) or translation ([work]) */ -}}
+{{- $w := .Params.book | default .Params.work }}
+{{- if $w }}
+{{- $kind := cond (isset .Params "book") "Book" "Text" }}
+{{- $fields := slice (slice "title" $kind) (slice "author" "Author") (slice "translator" "Translator") (slice "year" "Year") (slice "publisher" "Publisher") (slice "section" "Section") (slice "metre" "Metre") (slice "edition" "Edition") }}
+<dl class="work-panel" data-pagefind-ignore>
+  {{- range $fields }}{{ $v := index $w (index . 0) }}{{ if $v }}
+  <div><dt class="label">{{ index . 1 }}</dt><dd{{ if eq (index . 0) "title" }} class="work-title"{{ end }}>{{ $v }}</dd></div>
+  {{- end }}{{ end }}
+</dl>
+{{- end }}

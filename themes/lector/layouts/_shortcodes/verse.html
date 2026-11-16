@@ -1,0 +1,17 @@
+{{- /*
+  {{< verse n="2.47" >}} original --- transliteration --- translation [--- note] {{< /verse >}}
+  Parts are separated by a line containing only ---. Two parts = original + translation (no transliteration).
+  Line breaks in the original and transliteration are kept; translation and note are Markdown.
+*/ -}}
+{{- $parts := split (replaceRE `\r\n` "\n" (strings.TrimSpace .Inner)) "\n---\n" }}
+{{- $n := .Get "n" }}
+{{- $sa := index $parts 0 }}{{ $iast := "" }}{{ $tr := "" }}{{ $note := "" }}
+{{- if ge (len $parts) 3 }}{{ $iast = index $parts 1 }}{{ $tr = index $parts 2 }}{{ if ge (len $parts) 4 }}{{ $note = index $parts 3 }}{{ end }}
+{{- else if eq (len $parts) 2 }}{{ $tr = index $parts 1 }}{{ end }}
+<div class="verse"{{ with $n }} id="v-{{ . | anchorize }}"{{ end }}>
+  {{- with $n }}<a class="verse-n" href="#v-{{ . | anchorize }}" aria-label="Verse {{ . }}">{{ . }}</a>{{ end }}
+  <p class="verse-sa" lang="sa">{{ replace (strings.TrimSpace $sa | htmlEscape) "\n" "<br>" | safeHTML }}</p>
+  {{- with $iast }}<p class="verse-iast" lang="sa-Latn">{{ replace (strings.TrimSpace . | htmlEscape) "\n" "<br>" | safeHTML }}</p>{{ end }}
+  {{- with $tr }}<div class="verse-tr">{{ strings.TrimSpace . | $.Page.RenderString (dict "display" "block") }}</div>{{ end }}
+  {{- with $note }}<div class="verse-note">{{ strings.TrimSpace . | $.Page.RenderString (dict "display" "block") }}</div>{{ end }}
+</div>

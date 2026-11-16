@@ -1,0 +1,24 @@
+{{- /* dict: page, pages, title, desc */ -}}
+{{- $pg := .page }}{{ $pages := first site.Config.Services.RSS.Limit .pages }}
+{{ printf "<?xml version=\"1.0\" encoding=\"utf-8\"?>" | safeHTML }}
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+<channel>
+  <title>{{ .title }}</title>
+  <link>{{ $pg.Permalink }}</link>
+  <description>{{ .desc }}</description>
+  <language>{{ site.Language.Locale | default "en-US" }}</language>
+  {{- with $pages }}<lastBuildDate>{{ (index . 0).Date.Format "Mon, 02 Jan 2006 15:04:05 -0700" | safeHTML }}</lastBuildDate>{{ end }}
+  {{- with $pg.OutputFormats.Get .format }}<atom:link href="{{ .Permalink }}" rel="self" type="application/rss+xml"/>{{ end }}
+  {{- range $pages }}
+  <item>
+    <title>{{ .Title }}</title>
+    <link>{{ .Permalink }}</link>
+    <guid>{{ .Permalink }}</guid>
+    <pubDate>{{ .Date.Format "Mon, 02 Jan 2006 15:04:05 -0700" | safeHTML }}</pubDate>
+    <category>{{ .CurrentSection.Title }}</category>
+    {{- with .Description }}<description>{{ . }}</description>{{ end }}
+    <content:encoded xmlns:content="http://purl.org/rss/1.0/modules/content/">{{ printf "<![CDATA[%s]]>" (.Content | replaceRE "]]>" "]]&gt;") | safeHTML }}</content:encoded>
+  </item>
+  {{- end }}
+</channel>
+</rss>

@@ -1,6 +1,6 @@
 {{ define "main" }}
 {{- $isPost := in site.Params.mainSections .Section }}
-<article class="post"{{ if $isPost }} data-pagefind-body{{ end }}>
+<article class="post" id="post"{{ if $isPost }} data-pagefind-body{{ end }}>
   <header class="post-head">
     {{- if .IsPage }}{{ with .CurrentSection }}{{ if and (not .IsHome) (in site.Params.mainSections .Section) }}<p class="label"><a href="{{ .RelPermalink }}">{{ .Title }}</a></p>{{ end }}{{ end }}{{ end }}
     <h1 class="post-title" data-pagefind-meta="title">{{ .Title }}</h1>
@@ -9,6 +9,14 @@
       <time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "2 January 2006" }}</time>
       {{- if gt (.Lastmod.Sub .Date).Hours 24.0 }}<span class="sep">·</span><span>Updated {{ .Lastmod.Format "2 January 2006" }}</span>{{ end }}
       <span class="sep">·</span><span>{{ .ReadingTime }} min read</span>
+    </div>
+    {{- end }}
+    {{- partial "work-panel.html" . }}
+    {{- if .HasShortcode "verse" }}
+    <div class="verse-toggles" role="group" aria-label="Show in verses" data-pagefind-ignore>
+      <span class="label">Show</span>
+      <button type="button" class="chip" data-hide="hide-sa" aria-pressed="true">Devanāgarī</button>
+      <button type="button" class="chip" data-hide="hide-iast" aria-pressed="true">Transliteration</button>
     </div>
     {{- end }}
   </header>

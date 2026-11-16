@@ -1,0 +1,1 @@
+{{- partial "rss.xml" (dict "page" . "format" "techrss" "title" (printf "%s · Technical" site.Title) "desc" "White papers, deep dives and essays on architecture, platforms and infrastructure." "pages" (where site.RegularPages "Section" "in" site.Params.wings.technical)) -}}

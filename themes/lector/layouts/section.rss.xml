@@ -1,0 +1,1 @@
+{{- partial "rss.xml" (dict "page" . "format" "rss" "title" (printf "%s · %s" .Title site.Title) "desc" (.Content | plainify | strings.TrimSpace) "pages" .RegularPages) -}}

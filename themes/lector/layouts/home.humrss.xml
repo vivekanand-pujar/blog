@@ -1,0 +1,1 @@
+{{- partial "rss.xml" (dict "page" . "format" "humrss" "title" (printf "%s · Marginalia & Translations" site.Title) "desc" "Philosophy, books, and translations from Sanskrit." "pages" (where site.RegularPages "Section" "in" site.Params.wings.humanities)) -}}

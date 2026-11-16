@@ -4,12 +4,20 @@
   {{- with site.Params.tagline }}<p class="intro-text">{{ . }}</p>{{ end }}
   {{- with .Content }}<div class="prose">{{ . }}</div>{{ end }}
 </section>
-{{- $posts := where site.RegularPages "Section" "in" site.Params.mainSections }}
-<section class="post-list" aria-label="Recent posts">
+{{- $tech := where site.RegularPages "Section" "in" site.Params.wings.technical }}
+{{- $hum := where site.RegularPages "Section" "in" site.Params.wings.humanities }}
+<section class="post-list" aria-label="Recent technical writing">
   <h2 class="label">Recent</h2>
-  {{- $p := .Paginate $posts }}
+  {{- $p := .Paginate $tech }}
   {{- range $p.Pages }}{{ partial "post-item.html" . }}{{ else }}<p class="empty">No posts yet — the first one is on its way.</p>{{ end }}
   {{ partial "pager.html" . }}
-  {{- if $posts }}<p class="more"><a href="/archive/">All posts →</a></p>{{ end }}
 </section>
+{{- if and $hum (eq $p.PageNumber 1) }}
+<section class="post-list wing-list" aria-label="Marginalia and Translations">
+  <h2 class="label">Marginalia &amp; Translations</h2>
+  {{- range first 5 $hum }}{{ partial "post-item.html" . }}{{ end }}
+  {{- if gt (len $hum) 5 }}<p class="more"><a href="/marginalia/">Marginalia →</a>&emsp;<a href="/translations/">Translations →</a></p>{{ end }}
+</section>
+{{- end }}
+{{- if or $tech $hum }}<p class="more"><a href="/archive/">All posts →</a></p>{{ end }}
 {{ end }}

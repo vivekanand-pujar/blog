@@ -1,0 +1,1 @@
+{{- partial "rss.xml" (dict "page" . "format" "rss" "title" site.Title "desc" "All writing: technical, philosophy, books and translations." "pages" (where site.RegularPages "Section" "in" site.Params.mainSections)) -}}

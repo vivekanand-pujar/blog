@@ -16,12 +16,17 @@ tag = "tags"
 author = "Vivekanand Pujar"
 description = "Technical deep dives, architecture notes, white papers, and essays."
 tagline = "Distributed systems, Kubernetes, cloud infrastructure, observability, and software architecture."
-mainSections = ["papers", "deep-dives", "essays"]
+mainSections = ["papers", "deep-dives", "essays", "marginalia", "translations"]   # everything that is a "post"
 images = ["images/og-default.png"]   # default share image (Open Graph / Twitter)
 toc = false                           # per post: toc = true
 comments = true                       # per post: comments = false
 
 brandline = "Architecture · Platform · Infrastructure"   # small line under the name in the header (hidden on phones)
+
+# Two wings: technical writing, and the humanities (philosophy, books, Sanskrit translation)
+[params.wings]
+technical = ["papers", "deep-dives", "essays"]
+humanities = ["marginalia", "translations"]
 
 # Header icons (LinkedIn shows once a URL is set)
 [params.social]
@@ -52,9 +57,25 @@ url = "/essays/"
 weight = 30
 
 [[menu.main]]
+name = "Marginalia"
+url = "/marginalia/"
+weight = 32
+[menu.main.params]
+group = "humanities"
+
+[[menu.main]]
+name = "Translations"
+url = "/translations/"
+weight = 34
+[menu.main.params]
+group = "humanities"
+
+[[menu.main]]
 name = "About"
 url = "/about/"
 weight = 40
+[menu.main.params]
+group = "site"
 
 [markup.goldmark.renderer]
 unsafe = true                         # own writing only: allows <kbd>, <details>, <sup> … (CSP still blocks scripts)
@@ -70,8 +91,23 @@ lineNos = false
 startLevel = 2
 endLevel = 3
 
+# Feeds: /index.xml = everything; /technical.xml and /humanities.xml = one wing each; every section has its own index.xml
+[outputFormats.TechRSS]
+mediaType = "application/rss+xml"
+baseName = "technical"
+rel = "alternate"
+isHTML = false
+noUgly = true
+
+[outputFormats.HumRSS]
+mediaType = "application/rss+xml"
+baseName = "humanities"
+rel = "alternate"
+isHTML = false
+noUgly = true
+
 [outputs]
-home = ["HTML", "RSS"]
+home = ["HTML", "RSS", "TechRSS", "HumRSS"]
 section = ["HTML", "RSS"]
 
 [services.rss]

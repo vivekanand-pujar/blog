@@ -222,13 +222,10 @@ html[data-pref="white"] .i-white, html[data-pref="night"] .i-night, html[data-pr
 @media (max-width: 640px) {
   :root { --text-size: 17px; --gutter: 18px }
   main.wrap { padding-top: 32px }
-  .header-inner { flex-wrap: wrap; padding-top: 8px; padding-bottom: 6px; row-gap: 2px; column-gap: 6px }
-  .site-title { order: 1; flex: 1 } .header-actions { order: 2; border-left: 0; padding-left: 0 }
   .site-line { display: none }
   .site-mark { width: 28px; height: 28px; border-radius: 6px } .site-title { gap: 10px }
   .header-actions a.icon-btn { display: none }                       /* phones: only search + theme in the header */
-  .site-nav { order: 3; width: 100%; margin-left: -8px; gap: 0 } .site-nav a { padding: 6px 8px }
-  .site-nav a.is-current::after { bottom: -7px }
+  .site-nav a { padding: 6px 8px }
   .intro-title { font-size: 28px } .page-title { font-size: 27px } .post-title { font-size: 30px }
   .post-nav { grid-template-columns: 1fr } .post-nav .next { grid-column: auto }
   .prose pre { font-size: 13.5px; padding-left: var(--gutter); padding-right: var(--gutter); border-radius: 0 }
@@ -247,3 +244,52 @@ html[data-pref="white"] .i-white, html[data-pref="night"] .i-night, html[data-pr
 .prose .elsewhere { font-family: var(--font-ui); font-size: 15px; letter-spacing: var(--tracking-ui); color: var(--muted) }
 .prose .elsewhere .sep { margin: 0 .6em }
 .prose img.portrait { display: block; width: 120px; height: 120px; border-radius: 50%; object-fit: cover; margin: 0 0 1.8em; box-shadow: 0 0 0 1px var(--border) }
+
+/* ---------- Humanities wing (Marginalia, Translations): Literata for the reading text ---------- */
+:root { --font-serif: 'Literata', Georgia, 'Times New Roman', serif; --font-deva: 'Tiro Devanagari Sanskrit', 'Noto Serif Devanagari', serif }
+.wing-humanities { --text-size: 19px; --tracking-text: 0em; --line-height: 1.68; --measure: calc(36.5 * var(--text-size)) }   /* Literata 19px: ~75 chars per line (measured) */
+.wing-humanities .post-title { font-family: var(--font-serif); font-weight: 400; letter-spacing: 0 }
+.wing-humanities .prose { font-family: var(--font-serif) }
+.wing-humanities .prose :is(h2, h3, h4) { font-family: var(--font-serif); font-weight: 600; letter-spacing: 0 }
+.wing-humanities .prose blockquote { font-style: italic }
+@media (max-width: 640px) { .wing-humanities { --text-size: 17px } }
+.wing-list { margin-top: 56px }
+
+/* header: hairline between the technical and humanities groups */
+.nav-sep { width: 1px; height: 16px; background: var(--border); margin: 0 8px; flex: none }
+
+/* reference panel: [book] on reviews, [work] on translations */
+.work-panel { display: flex; flex-wrap: wrap; gap: 14px 32px; margin: 22px 0 0; padding: 16px 0 0; border-top: 1px solid var(--border) }
+.work-panel div { min-width: 0 }
+.work-panel dt { margin: 0 0 3px; font-size: 11px }
+.work-panel dd { margin: 0; font-size: 15px }
+.work-panel dd.work-title { font-family: var(--font-serif); font-style: italic; font-size: 17px; line-height: 1.3 }
+
+/* verses: original (Devanagari), transliteration (IAST), translation, note */
+.verse { position: relative; margin: 0 0 2.2em; padding-left: 64px }
+.prose a.verse-n { text-decoration: none; border: 0 }
+.verse-n { position: absolute; left: 0; top: .35em; width: 48px; font: 400 12px/1.4 var(--font-ui); letter-spacing: var(--tracking-ui); color: var(--muted); text-align: right; font-variant-numeric: tabular-nums }
+.verse-n:hover { color: var(--accent) }
+.prose .verse-sa { font-family: var(--font-deva); font-size: 1.12em; line-height: 1.85; letter-spacing: 0; margin: 0 0 .5em }
+.prose .verse-iast { font-family: var(--font-serif); font-style: italic; font-size: .9em; line-height: 1.6; color: var(--muted); margin: 0 0 .9em }
+.verse-tr > :last-child, .verse-note > :last-child { margin-bottom: 0 }
+.verse-note { margin-top: .8em; padding-left: 14px; border-left: 2px solid var(--border); font-size: .86em; color: var(--muted) }
+.verse:target .verse-n { color: var(--accent) }
+#post.hide-sa .verse-sa, #post.hide-iast .verse-iast { display: none }
+.verse-toggles { display: flex; align-items: center; gap: 8px; margin-top: 18px }
+.verse-toggles .label { margin: 0 4px 0 0 }
+.chip { font: 400 13px/1 var(--font-ui); letter-spacing: var(--tracking-ui); padding: 7px 12px; border-radius: 999px; border: 1px solid var(--border); background: none; color: var(--muted); cursor: pointer }
+.chip[aria-pressed="true"] { color: var(--text); border-color: color-mix(in srgb, var(--accent) 55%, var(--border)); background: color-mix(in srgb, var(--accent) 8%, transparent) }
+@media (max-width: 640px) {
+  .verse { padding-left: 0 } .verse-n { position: static; display: block; width: auto; text-align: left; margin-bottom: 4px }
+}
+/* below 1200px the menu moves to its own row (scrolls sideways on phones if it doesn't fit) */
+.site-nav a { white-space: nowrap }
+.header-inner { max-width: 1200px }
+@media (max-width: 1199px) {
+  .header-inner { flex-wrap: wrap; padding-top: 8px; padding-bottom: 6px; row-gap: 2px; column-gap: 6px }
+  .site-title { order: 1; flex: 1 } .header-actions { order: 2; border-left: 0; padding-left: 0 }
+  .site-nav { order: 3; width: 100%; margin-left: -10px; gap: 0; overflow-x: auto; scrollbar-width: none } .site-nav::-webkit-scrollbar { display: none }
+  .site-nav a { flex: none } .site-nav a.is-current::after { bottom: -7px }
+}
+@media print { .verse-toggles { display: none !important } }

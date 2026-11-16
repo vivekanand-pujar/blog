@@ -4,7 +4,9 @@
   <div class="header-inner">
     <a class="site-title" href="/" aria-label="{{ site.Title }} — home"><img class="site-mark" src="/images/mark.svg" alt="" width="32" height="32"><span class="site-words"><span class="site-name">{{ site.Title }}</span>{{ with site.Params.brandline }}<span class="site-line">{{ . }}</span>{{ end }}</span></a>
     <nav class="site-nav" aria-label="Main">
+      {{- $g := "" }}
       {{- range site.Menus.main }}
+      {{- $grp := .Params.group | default "technical" }}{{ if and $g (ne $g $grp) }}<span class="nav-sep" aria-hidden="true"></span>{{ end }}{{ $g = $grp }}
       <a href="{{ .URL }}"{{ if or ($cur.IsMenuCurrent "main" .) (eq (strings.TrimSuffix "/" $cur.RelPermalink) (strings.TrimSuffix "/" .URL)) (and $cur.IsPage (eq (printf "/%s/" $cur.Section) .URL)) }} class="is-current" aria-current="page"{{ end }}>{{ .Name }}</a>
       {{- end }}
     </nav>

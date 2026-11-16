@@ -22,3 +22,13 @@ GitHub Discussions in this repo, category "Comments" (announcement format). IDs 
 
 ## Working with Vivek
 Candid, concise; point out mistakes in his English briefly at the end of replies. Leave to him anything that grants access, accepts terms or types personal data.
+
+## Two wings (added 2026-11-16)
+
+- **Technical:** `papers`, `deep-dives`, `essays` (Inter). **Humanities:** `marginalia` (philosophy, epistemology, reviews of mostly non-technical books) and `translations` (Sanskrit). Lists in `hugo.toml` `[params.wings]`; `mainSections` = all five.
+- Header groups menu items by `[menu.main.params] group` with hairline separators; below 1200px the menu moves to its own row (scrolls sideways on phones).
+- Home: "Recent" = technical only; "Marginalia & Translations" = latest 5 humanities posts, separately.
+- Feeds (full content): `/index.xml` everything, `/technical.xml`, `/humanities.xml`, and `<section>/index.xml`. Templates `home.rss.xml`, `home.techrss.xml`, `home.humrss.xml`, `section.rss.xml` → `_partials/rss.xml`.
+- Humanities pages: `body.wing-humanities` → Literata 19px (17px phones), column 36.5 × text size (~75 chars/line). Literata loads only on humanities posts; Tiro Devanagari Sanskrit only on posts using the `verse` shortcode.
+- Book reviews: `[book]` (title, author, year, translator, publisher); translations: `[work]` (title, author, section, metre, edition) → `_partials/work-panel.html`. Archetypes: `hugo new marginalia/x.md`, `hugo new translations/x.md`.
+- `{{< verse n="2.47" >}} Devanagari --- IAST --- translation [--- note] {{< /verse >}}` (parts separated by a line `---`; two parts = original + translation). Toggles to hide Devanāgarī / transliteration (localStorage `vp:hide-sa`, `vp:hide-iast`).

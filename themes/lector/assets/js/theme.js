@@ -114,6 +114,16 @@
       dlg.addEventListener('click', function (e) { if (e.target === dlg) dlg.close() });   // click on the backdrop
     }
 
+    // translations: show/hide Devanagari and transliteration in verses (remembered per browser)
+    var post = document.getElementById('post');
+    document.querySelectorAll('.verse-toggles .chip').forEach(function (chip) {
+      var cls = chip.dataset.hide, key = 'vp:' + cls;
+      var hidden = false; try { hidden = localStorage.getItem(key) === '1' } catch (e) {}
+      function set(h) { post.classList.toggle(cls, h); chip.setAttribute('aria-pressed', h ? 'false' : 'true') }
+      set(hidden);
+      chip.addEventListener('click', function () { hidden = !hidden; set(hidden); try { localStorage.setItem(key, hidden ? '1' : '0') } catch (e) {} });
+    });
+
     // comments (Giscus): config comes from data-* on #giscus
     var g = document.getElementById('giscus');
     if (g) {

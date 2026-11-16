@@ -3,7 +3,7 @@
 <head>
 {{ partial "head.html" . }}
 </head>
-<body class="kind-{{ .Kind }}{{ with .Section }} section-{{ . }}{{ end }}">
+<body class="kind-{{ .Kind }}{{ with .Section }} section-{{ . }}{{ if in site.Params.wings.humanities . }} wing-humanities{{ end }}{{ end }}">
 <a class="skip" href="#main">Skip to content</a>
 {{ partial "header.html" . }}
 <main id="main" class="wrap">
