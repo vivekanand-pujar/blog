@@ -24,7 +24,7 @@ comments = true                       # per post: comments = false
 # Header icons (LinkedIn shows once a URL is set)
 [params.social]
 github = "https://github.com/vivekanand-pujar"
-linkedin = ""
+linkedin = "https://www.linkedin.com/in/vivekanandpujar/"
 
 # Giscus (GitHub Discussions). Comments render only once repoId and categoryId are set.
 [params.giscus]
